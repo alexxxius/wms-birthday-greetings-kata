@@ -23,7 +23,8 @@ with the first name of the employee substituted for “John”
 
 
 ### Test List
-- async?
+- hardcoded smtp endpoint in prod code
+- hardcoded from address in prod code
 
 Red => Green => Refactoring
 
