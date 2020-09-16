@@ -20,3 +20,28 @@ The greetings email contains the following text:
     Happy birthday, dear John!
     
 with the first name of the employee substituted for “John”
+
+
+### Test List
+- async?
+
+Red => Green => Refactoring
+
+# no birthday
+- file con header but no rows => no sends
+- file one row no birthday => no sends
+
+# one birthdays
+- file one row yes birthday => one send
+
+# many birthdays
+- file 2 rows yes 2 birthday => 2 sends
+- file N rows M birthdays => M sends
+
+- file mancante => no sends
+- file no-head yes rows => no sends
+- file full empty => no sends
+- righe malformattate
+- righe duplicate
+- receiver email not valid
+- smtp unreachable
