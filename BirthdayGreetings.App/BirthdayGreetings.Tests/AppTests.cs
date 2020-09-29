@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using System.Net.Mail;
+﻿using System.Net.Mail;
 using System.Threading.Tasks;
 using BirthdayGreetings.Tests.Support;
-using DeepEqual.Syntax;
+using FluentAssertions;
 using netDumbster.smtp;
 using Xunit;
 
@@ -24,11 +23,12 @@ namespace BirthdayGreetings.Tests
             {
                 await app.Run();
 
-               ReceivedMail.FromAll(smtpServer)
-                    .ShouldDeepEqual(new[] { new ReceivedMail("foo@bar.com",
+                ReceivedMail.FromAll(smtpServer)
+                    .Should()
+                    .BeEquivalentTo(new ReceivedMail("foo@bar.com",
                         "mary.ann@foobar.com",
                         "Happy birthday!",
-                        "Happy birthday, dear Mary!") });
+                        "Happy birthday, dear Mary!"));
             }
         }
     }
