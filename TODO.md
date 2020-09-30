@@ -39,6 +39,7 @@ Red => Green => Refactoring
 - file 2 rows yes 2 birthday => 2 sends
 - file N rows M birthdays => M sends
 
+# non happy path
 - file mancante => no sends
 - file no-head yes rows => no sends
 - file full empty => no sends

@@ -1,4 +1,8 @@
-﻿using System.Net.Mail;
+﻿using System;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using BirthdayGreetings.Tests.Support;
 using FluentAssertions;
@@ -12,16 +16,22 @@ namespace BirthdayGreetings.Tests
         // - file one row yes birthday => one send
         //        - hardcoded smtp endpoint in prod code
         //        - hardcoded from address in prod code
-        //        - remember to add WhenOneBirthday to test name
+        //        - hardcoded file path + name
+        //        - parsing con metodi ad-hoc
 
         [Fact]
-        public async Task SendOneGreeting()
+        public async Task SendOneGreetingWhenOneBirthday()
         {
+            EmployeeFile("one-birthday-employee-generated.txt",
+                Header(),
+                Employee("Mary", "1975/09/11", "mary.ann@foobar.com")
+            );
+            
             var app = new App();
 
             using (var smtpServer = SimpleSmtpServer.Start(5000))
             {
-                await app.Run();
+                await app.Run(Date("11/09/2020"));
 
                 ReceivedMail.FromAll(smtpServer)
                     .Should()
@@ -31,18 +41,39 @@ namespace BirthdayGreetings.Tests
                         "Happy birthday, dear Mary!"));
             }
         }
+
+        static void EmployeeFile(string fileName, params string[] lines) =>
+            File.WriteAllLines(fileName, lines);
+
+        static String Employee(String name, String date, String email) => 
+            $"Ann, {name}, {date}, {email}";
+
+        static String Header() => 
+            "last_name, first_name, date_of_birth, email";
+
+        static DateTime Date(String value) =>
+            DateTime.ParseExact(value, "dd/MM/yyyy", CultureInfo.InvariantCulture);
     }
 
     public class App
     {
-        public async Task Run()
+        public Task RunOnToday() =>
+            Run(DateTime.Today);
+        public async Task Run(DateTime today)
         {
+            var lines = File.ReadAllLines("one-birthday-employee-generated.txt");
+            var noHeader = lines.Skip(1);
+            var employee = noHeader.Single().Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
+            var email = employee[3];
+            var name = employee[1].Trim();
+            var date = DateTime.Parse(employee[2].Trim());
+
             using (var smtpClient = new SmtpClient("localhost", 5000))
             {
                 await smtpClient.SendMailAsync("foo@bar.com",
-                    "mary.ann@foobar.com",
+                    email,
                     "Happy birthday!",
-                    "Happy birthday, dear Mary!");
+                    $"Happy birthday, dear {name}!");
             }
         }
     }
