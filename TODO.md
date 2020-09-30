@@ -24,6 +24,10 @@ with the first name of the employee substituted for “John”
 
 ### Test List
 - parsing con metodi ad-hoc
+- duplicazione Trim(s) sui singoli valori parsati dal file
+- parse file content
+- estrare un Employee per ovviare all'oggetto anonimo
+- send notifica
 
 # no birthday
 - file con header but no rows => no sends

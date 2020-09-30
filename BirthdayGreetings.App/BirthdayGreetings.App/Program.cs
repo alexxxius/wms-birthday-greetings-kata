@@ -8,10 +8,8 @@ namespace BirthdayGreetings.App
         static async Task Main(string[] args)
         {
             var smtpConfiguration = SmtpConfiguration.From(ConfigurationManager.AppSettings);
-            var fileConfiguration = new FileConfiguration
-            {
-                FilePath = "employees-data.txt"
-            };
+            var fileConfiguration = FileConfiguration.From(ConfigurationManager.AppSettings);
+            
             var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.RunOnToday();

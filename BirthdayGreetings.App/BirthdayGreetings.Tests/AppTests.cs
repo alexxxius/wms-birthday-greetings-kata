@@ -26,13 +26,6 @@ namespace BirthdayGreetings.Tests
 
         readonly SimpleSmtpServer smtpServer;
 
-        /*
-         * - duplicazione Trim(s) sui singoli valori parsati dal file
-         * - parse file content
-         * - estrare un Employee per ovviare all'oggetto anonimo
-         * - send notifica
-         */
-
         public AppTests() => 
             smtpServer = SimpleSmtpServer.Start(smtpConfiguration.Port);
 
