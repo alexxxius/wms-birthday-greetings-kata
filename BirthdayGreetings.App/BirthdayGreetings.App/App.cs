@@ -29,12 +29,15 @@ namespace BirthdayGreetings.App
             var name = employee[1].Trim();
             var date = DateTime.Parse(employee[2].Trim());
 
-            using (var smtpClient = new SmtpClient(smtpConfiguration.Host, smtpConfiguration.Port))
+            if (today.Month == date.Month && today.Day == date.Day)
             {
-                await smtpClient.SendMailAsync(smtpConfiguration.Sender,
-                    email,
-                    "Happy birthday!",
-                    $"Happy birthday, dear {name}!");
+                using (var smtpClient = new SmtpClient(smtpConfiguration.Host, smtpConfiguration.Port))
+                {
+                    await smtpClient.SendMailAsync(smtpConfiguration.Sender,
+                        email,
+                        "Happy birthday!",
+                        $"Happy birthday, dear {name}!");
+                }
             }
         }
     }

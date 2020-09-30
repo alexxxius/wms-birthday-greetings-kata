@@ -10,41 +10,70 @@ using Xunit;
 
 namespace BirthdayGreetings.Tests
 {
-    public class AppTests
+    public class AppTests : IDisposable
     {
-        readonly String employeeTestFile = "employees.txt";
+        readonly FileConfiguration fileConfiguration = new FileConfiguration
+        {
+            FilePath = "employees.txt"
+        };
+
+        readonly SmtpConfiguration smtpConfiguration = new SmtpConfiguration
+        {
+            Sender = "foo@bar.com",
+            Host = "localhost",
+            Port = 5000
+        };
+
+        readonly SimpleSmtpServer smtpServer;
+
+        /*
+         * - namespace condivide il nome della classe
+         * - duplicazione Trim(s) sui singoli valori parsati dal file
+         * - parse file content
+         * - check isBirthday
+         * - send notifica
+         * 
+         */
+
+        public AppTests() => 
+            smtpServer = SimpleSmtpServer.Start(smtpConfiguration.Port);
+
+        public void Dispose() => 
+            smtpServer.Dispose();
 
         [Fact]
         public async Task SendOneGreetingWhenOneBirthday()
         {
-            EmployeeFile(employeeTestFile,
+            EmployeeFile(fileConfiguration.FilePath,
                 Header(),
                 Employee("Mary", "1975/09/11", "mary.ann@foobar.com")
             );
-
-            var smtpConfiguration = new SmtpConfiguration
-            {
-                Sender = "foo@bar.com",
-                Host = "localhost",
-                Port = 5000
-            };
-            var fileConfiguration = new FileConfiguration
-            {
-                FilePath = employeeTestFile
-            };
             var app = new App.App(fileConfiguration, smtpConfiguration);
 
-            using (var smtpServer = SimpleSmtpServer.Start(5000))
-            {
-                await app.Run(Date("11/09/2020"));
+            await app.Run(Date("11/09/2020"));
 
-                ReceivedMail.FromAll(smtpServer)
-                    .Should()
-                    .BeEquivalentTo(new ReceivedMail(smtpConfiguration.Sender,
-                        "mary.ann@foobar.com",
-                        "Happy birthday!",
-                        "Happy birthday, dear Mary!"));
-            }
+            ReceivedMail.FromAll(smtpServer)
+                .Should()
+                .BeEquivalentTo(new ReceivedMail(smtpConfiguration.Sender,
+                    "mary.ann@foobar.com",
+                    "Happy birthday!",
+                    "Happy birthday, dear Mary!"));
+        }
+
+        [Fact]
+        public async Task NoSendsGreetingWhenNoBirthdays()
+        {
+            EmployeeFile(fileConfiguration.FilePath,
+                Header(),
+                Employee("Mary", "1982/11/08", "mary.ann@foobar.com")
+            );
+            var app = new App.App(fileConfiguration, smtpConfiguration);
+
+            await app.Run(Date("11/09/2020"));
+
+            ReceivedMail.FromAll(smtpServer)
+                .Should()
+                .BeEmpty();
         }
 
         static void EmployeeFile(string fileName, params string[] lines) =>
