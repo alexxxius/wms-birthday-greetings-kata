@@ -13,21 +13,25 @@ namespace BirthdayGreetings.Tests
 {
     public class AppTests
     {
+        readonly String employeeTestFile = "employees.txt";
+        
         // - file one row yes birthday => one send
         //        - hardcoded smtp endpoint in prod code
         //        - hardcoded from address in prod code
-        //        - hardcoded file path + name
         //        - parsing con metodi ad-hoc
 
         [Fact]
         public async Task SendOneGreetingWhenOneBirthday()
         {
-            EmployeeFile("one-birthday-employee-generated.txt",
+            EmployeeFile(employeeTestFile,
                 Header(),
                 Employee("Mary", "1975/09/11", "mary.ann@foobar.com")
             );
             
-            var app = new App();
+            var app = new App(new FileConfiguration
+            {
+                FilePath = employeeTestFile
+            });
 
             using (var smtpServer = SimpleSmtpServer.Start(5000))
             {
@@ -57,11 +61,18 @@ namespace BirthdayGreetings.Tests
 
     public class App
     {
+        readonly FileConfiguration fileConfiguration;
+
+        public App(FileConfiguration fileConfiguration)
+        {
+            this.fileConfiguration = fileConfiguration;
+        }
+
         public Task RunOnToday() =>
             Run(DateTime.Today);
         public async Task Run(DateTime today)
         {
-            var lines = File.ReadAllLines("one-birthday-employee-generated.txt");
+            var lines = File.ReadAllLines(fileConfiguration.FilePath);
             var noHeader = lines.Skip(1);
             var employee = noHeader.Single().Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
             var email = employee[3];
