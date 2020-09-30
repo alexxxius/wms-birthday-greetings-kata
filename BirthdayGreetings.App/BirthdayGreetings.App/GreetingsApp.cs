@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
@@ -23,23 +24,27 @@ namespace BirthdayGreetings.App
 
         public async Task Run(DateTime today)
         {
-            var lines = File.ReadAllLines(fileConfiguration.FilePath);
-            var noHeader = lines.Skip(1);
-            var employee = noHeader
-                .Select(line => line.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries))
-                .Select(parts => new {Name = parts[1].Trim(), DateOfBirth = DateTime.Parse(parts[2].Trim()), Email = parts[3].Trim()})
+            var lines = await File.ReadAllLinesAsync(fileConfiguration.FilePath);
+            
+            var employee = lines
+                .Skip(1)
+                
+                .Select(line => line.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray())
+                
+                .Select(parts => new {Name = parts[1], DateOfBirth = DateTime.Parse(parts[2]), Email = parts[3]})
+                
                 .Where(x => today.Month == x.DateOfBirth.Month && today.Day == x.DateOfBirth.Day)
+                
                 .ToList();
+
+            using var smtpClient = new SmtpClient(smtpConfiguration.Host, smtpConfiguration.Port);
 
             foreach (var e in employee)
             {
-                using (var smtpClient = new SmtpClient(smtpConfiguration.Host, smtpConfiguration.Port))
-                {
-                    await smtpClient.SendMailAsync(smtpConfiguration.Sender,
-                        e.Email,
-                        "Happy birthday!",
-                        $"Happy birthday, dear {e.Name}!");
-                }
+                await smtpClient.SendMailAsync(smtpConfiguration.Sender,
+                    e.Email,
+                    "Happy birthday!",
+                    $"Happy birthday, dear {e.Name}!");
             }
         }
     }
