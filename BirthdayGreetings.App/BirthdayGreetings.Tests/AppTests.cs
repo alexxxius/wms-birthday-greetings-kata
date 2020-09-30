@@ -29,10 +29,8 @@ namespace BirthdayGreetings.Tests
         /*
          * - duplicazione Trim(s) sui singoli valori parsati dal file
          * - parse file content
-         * - estrarre un Employee per ovviare all'oggetto anonimo
-         * - check isBirthday
+         * - estrare un Employee per ovviare all'oggetto anonimo
          * - send notifica
-         * 
          */
 
         public AppTests() => 

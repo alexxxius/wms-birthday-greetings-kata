@@ -22,5 +22,10 @@ namespace BirthdayGreetings.App
      * example based test
      * generative based test
      *     - property-based test
+     *
+     * generateInvalid = NameValueCollection(invalidHost, invalidPort, invalidSender)
+     * [InData
+     * InvalidConfShouldThrow(NameValueCollection invalid)
+     *   Assert.Throws<...>(() => SmtpConfiguration.From(invalid)
      */
 }

@@ -22,10 +22,11 @@
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/SmtpConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/FileConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/Program.cs" />
-        <option value="$PROJECT_DIR$/BirthdayGreetings.App/SmtpConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/App.cs" />
-        <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/AppTests.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/DateOfBirth.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/GreetingsApp.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/AppTests.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/SmtpConfiguration.cs" />
       </list>
     </option>
   </component>

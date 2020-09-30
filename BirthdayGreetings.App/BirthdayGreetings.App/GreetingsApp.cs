@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Runtime.InteropServices.ComTypes;
+using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace BirthdayGreetings.App
@@ -31,9 +32,14 @@ namespace BirthdayGreetings.App
                 
                 .Select(line => line.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray())
                 
-                .Select(parts => new {Name = parts[1], DateOfBirth = DateTime.Parse(parts[2]), Email = parts[3]})
+                .Select(parts => new
+                {
+                    Name = parts[1],
+                    DateOfBirth = DateOfBirth.From(parts[2]),
+                    Email = parts[3]
+                })
                 
-                .Where(x => today.Month == x.DateOfBirth.Month && today.Day == x.DateOfBirth.Day)
+                .Where(x => x.DateOfBirth.IsBirthday(today))
                 
                 .ToList();
 
