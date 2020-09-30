@@ -27,7 +27,6 @@ namespace BirthdayGreetings.Tests
         readonly SimpleSmtpServer smtpServer;
 
         /*
-         * - namespace condivide il nome della classe
          * - duplicazione Trim(s) sui singoli valori parsati dal file
          * - parse file content
          * - check isBirthday
@@ -48,7 +47,7 @@ namespace BirthdayGreetings.Tests
                 Header(),
                 Employee("Mary", "1975/09/11", "mary.ann@foobar.com")
             );
-            var app = new App.App(fileConfiguration, smtpConfiguration);
+            var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.Run(Date("11/09/2020"));
 
@@ -67,7 +66,7 @@ namespace BirthdayGreetings.Tests
                 Header(),
                 Employee("Mary", "1982/11/08", "mary.ann@foobar.com")
             );
-            var app = new App.App(fileConfiguration, smtpConfiguration);
+            var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.Run(Date("11/09/2020"));
 

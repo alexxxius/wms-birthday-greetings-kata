@@ -12,7 +12,7 @@ namespace BirthdayGreetings.App
             {
                 FilePath = "employees-data.txt"
             };
-            var app = new App(fileConfiguration, smtpConfiguration);
+            var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.RunOnToday();
         }

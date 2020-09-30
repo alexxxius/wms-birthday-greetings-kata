@@ -13,10 +13,10 @@
     <e p="C:\Users\matteo\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_BirthdayGreetings.App.499583763.00" t="ExcludeRecursive" />
     <e p="C:\Users\matteo\dev\ynap\wms\BirthdayGreetings.App" t="IncludeFlat">
       <e p="BirthdayGreetings.App" t="IncludeRecursive">
-        <e p="App.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="BirthdayGreetings.App.csproj" t="IncludeRecursive" />
         <e p="FileConfiguration.cs" t="Include" />
+        <e p="GreetingsApp.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">

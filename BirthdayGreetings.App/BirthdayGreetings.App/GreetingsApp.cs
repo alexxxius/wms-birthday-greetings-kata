@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BirthdayGreetings.App
 {
-    public class App
+    public class GreetingsApp
     {
         readonly FileConfiguration fileConfiguration;
         readonly SmtpConfiguration smtpConfiguration;
 
-        public App(FileConfiguration fileConfiguration, SmtpConfiguration smtpConfiguration)
+        public GreetingsApp(FileConfiguration fileConfiguration, SmtpConfiguration smtpConfiguration)
         {
             this.fileConfiguration = fileConfiguration;
             this.smtpConfiguration = smtpConfiguration;
