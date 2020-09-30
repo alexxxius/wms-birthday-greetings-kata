@@ -37,6 +37,7 @@
             </e>
           </e>
         </e>
+        <e p="SmtpConfiguration.cs" t="Include" />
         <e p="Support" t="Include">
           <e p="ReceivedMail.cs" t="Include" />
         </e>

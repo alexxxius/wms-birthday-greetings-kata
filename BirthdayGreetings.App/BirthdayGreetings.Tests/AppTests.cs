@@ -16,7 +16,6 @@ namespace BirthdayGreetings.Tests
         readonly String employeeTestFile = "employees.txt";
         
         // - file one row yes birthday => one send
-        //        - hardcoded smtp endpoint in prod code
         //        - hardcoded from address in prod code
         //        - parsing con metodi ad-hoc
 
@@ -31,6 +30,10 @@ namespace BirthdayGreetings.Tests
             var app = new App(new FileConfiguration
             {
                 FilePath = employeeTestFile
+            }, new SmtpConfiguration
+            {
+                Host = "localhost",
+                Port = 5000
             });
 
             using (var smtpServer = SimpleSmtpServer.Start(5000))
@@ -62,10 +65,12 @@ namespace BirthdayGreetings.Tests
     public class App
     {
         readonly FileConfiguration fileConfiguration;
+        readonly SmtpConfiguration smtpConfiguration;
 
-        public App(FileConfiguration fileConfiguration)
+        public App(FileConfiguration fileConfiguration, SmtpConfiguration smtpConfiguration)
         {
             this.fileConfiguration = fileConfiguration;
+            this.smtpConfiguration = smtpConfiguration;
         }
 
         public Task RunOnToday() =>
@@ -79,7 +84,7 @@ namespace BirthdayGreetings.Tests
             var name = employee[1].Trim();
             var date = DateTime.Parse(employee[2].Trim());
 
-            using (var smtpClient = new SmtpClient("localhost", 5000))
+            using (var smtpClient = new SmtpClient(smtpConfiguration.Host, smtpConfiguration.Port))
             {
                 await smtpClient.SendMailAsync("foo@bar.com",
                     email,
