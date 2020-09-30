@@ -14,9 +14,8 @@ namespace BirthdayGreetings.Tests
     public class AppTests
     {
         readonly String employeeTestFile = "employees.txt";
-        
+
         // - file one row yes birthday => one send
-        //        - hardcoded from address in prod code
         //        - parsing con metodi ad-hoc
 
         [Fact]
@@ -26,15 +25,18 @@ namespace BirthdayGreetings.Tests
                 Header(),
                 Employee("Mary", "1975/09/11", "mary.ann@foobar.com")
             );
-            
-            var app = new App(new FileConfiguration
+
+            var smtpConfiguration = new SmtpConfiguration
             {
-                FilePath = employeeTestFile
-            }, new SmtpConfiguration
-            {
+                Sender = "foo@bar.com",
                 Host = "localhost",
                 Port = 5000
-            });
+            };
+            var fileConfiguration = new FileConfiguration
+            {
+                FilePath = employeeTestFile
+            };
+            var app = new App(fileConfiguration, smtpConfiguration);
 
             using (var smtpServer = SimpleSmtpServer.Start(5000))
             {
@@ -42,7 +44,7 @@ namespace BirthdayGreetings.Tests
 
                 ReceivedMail.FromAll(smtpServer)
                     .Should()
-                    .BeEquivalentTo(new ReceivedMail("foo@bar.com",
+                    .BeEquivalentTo(new ReceivedMail(smtpConfiguration.Sender,
                         "mary.ann@foobar.com",
                         "Happy birthday!",
                         "Happy birthday, dear Mary!"));
@@ -52,10 +54,10 @@ namespace BirthdayGreetings.Tests
         static void EmployeeFile(string fileName, params string[] lines) =>
             File.WriteAllLines(fileName, lines);
 
-        static String Employee(String name, String date, String email) => 
+        static String Employee(String name, String date, String email) =>
             $"Ann, {name}, {date}, {email}";
 
-        static String Header() => 
+        static String Header() =>
             "last_name, first_name, date_of_birth, email";
 
         static DateTime Date(String value) =>
@@ -75,6 +77,7 @@ namespace BirthdayGreetings.Tests
 
         public Task RunOnToday() =>
             Run(DateTime.Today);
+
         public async Task Run(DateTime today)
         {
             var lines = File.ReadAllLines(fileConfiguration.FilePath);
@@ -86,7 +89,7 @@ namespace BirthdayGreetings.Tests
 
             using (var smtpClient = new SmtpClient(smtpConfiguration.Host, smtpConfiguration.Port))
             {
-                await smtpClient.SendMailAsync("foo@bar.com",
+                await smtpClient.SendMailAsync(smtpConfiguration.Sender,
                     email,
                     "Happy birthday!",
                     $"Happy birthday, dear {name}!");

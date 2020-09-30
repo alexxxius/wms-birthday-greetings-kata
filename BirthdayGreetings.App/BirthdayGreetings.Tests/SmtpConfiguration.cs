@@ -6,5 +6,6 @@ namespace BirthdayGreetings.Tests
     {
         public String Host { get; set; }
         public Int32 Port { get; set; }
+        public String Sender { get; set; }
     }
 }

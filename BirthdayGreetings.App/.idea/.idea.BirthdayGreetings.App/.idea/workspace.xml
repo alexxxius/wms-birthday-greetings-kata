@@ -10,11 +10,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/41474DB8-43F4-4238-A80A-2550087D0EC8/9/SimpleSmtpServer.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/41474DB8-43F4-4238-A80A-2550087D0EC8/2/Configure.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/one-birthday-employee-data.txt" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/FileConfiguration.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/SmtpConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/AppTests.cs" />
       </list>
     </option>
