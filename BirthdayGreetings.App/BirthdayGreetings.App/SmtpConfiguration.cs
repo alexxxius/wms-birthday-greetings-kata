@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BirthdayGreetings.Tests
+namespace BirthdayGreetings.App
 {
     public class SmtpConfiguration
     {

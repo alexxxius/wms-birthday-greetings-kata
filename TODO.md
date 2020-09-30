@@ -23,10 +23,7 @@ with the first name of the employee substituted for “John”
 
 
 ### Test List
-- hardcoded smtp endpoint in prod code
-- hardcoded from address in prod code
-
-Red => Green => Refactoring
+- parsing con metodi ad-hoc
 
 # no birthday
 - file con header but no rows => no sends

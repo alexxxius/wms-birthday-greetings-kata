@@ -17,4 +17,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BirthdayGreetings.App\BirthdayGreetings.App.csproj" />
+  </ItemGroup>
+
 </Project>
