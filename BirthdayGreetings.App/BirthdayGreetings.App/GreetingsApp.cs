@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
-using System.Runtime.InteropServices.ComTypes;
-using System.Runtime.Serialization;
 using System.Threading.Tasks;
 
 namespace BirthdayGreetings.App
@@ -30,7 +27,10 @@ namespace BirthdayGreetings.App
             var employee = lines
                 .Skip(1)
                 
-                .Select(line => line.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries).Select(x => x.Trim()).ToArray())
+                .Select(line => line
+                    .Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(x => x.Trim())
+                    .ToArray())
                 
                 .Select(parts => new
                 {
