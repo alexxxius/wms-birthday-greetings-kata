@@ -75,6 +75,33 @@ namespace BirthdayGreetings.Tests
                 .BeEmpty();
         }
 
+        [Fact]
+        public async Task SendManyGreetingsWhenManyBirthdays()
+        {
+            EmployeeFile(fileConfiguration.FilePath,
+                Header(),
+                Employee("Matteo", "1982/09/11", "matteo@doubleloop.io"),
+                Employee("John", "1982/10/08", "john.doe@foobar.com"),
+                Employee("Mary", "1975/09/11", "mary.ann@foobar.com")
+            );
+            var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
+
+            await app.Run(Date("11/09/2020"));
+
+            ReceivedMail.FromAll(smtpServer)
+                .Should()
+                .BeEquivalentTo(
+                    new ReceivedMail(smtpConfiguration.Sender,
+                    "mary.ann@foobar.com",
+                    "Happy birthday!",
+                    "Happy birthday, dear Mary!"),
+                    new ReceivedMail(smtpConfiguration.Sender,
+                    "matteo@doubleloop.io",
+                    "Happy birthday!",
+                    "Happy birthday, dear Matteo!")
+                );
+        }
+
         static void EmployeeFile(string fileName, params string[] lines) =>
             File.WriteAllLines(fileName, lines);
 

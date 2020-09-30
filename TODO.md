@@ -27,11 +27,8 @@ with the first name of the employee substituted for “John”
 
 # no birthday
 - file con header but no rows => no sends
-- file one row no birthday => no sends
 
 # many birthdays
-- file 2 rows yes 2 birthday => 2 sends
-- file N rows M birthdays => M sends
 
 # non happy path
 - file mancante => no sends

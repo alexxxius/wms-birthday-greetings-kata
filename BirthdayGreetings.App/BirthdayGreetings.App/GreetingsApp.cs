@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 
 namespace BirthdayGreetings.App
@@ -24,19 +25,20 @@ namespace BirthdayGreetings.App
         {
             var lines = File.ReadAllLines(fileConfiguration.FilePath);
             var noHeader = lines.Skip(1);
-            var employee = noHeader.Single().Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
-            var email = employee[3];
-            var name = employee[1].Trim();
-            var date = DateTime.Parse(employee[2].Trim());
+            var employee = noHeader
+                .Select(line => line.Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries))
+                .Select(parts => new {Name = parts[1].Trim(), DateOfBirth = DateTime.Parse(parts[2].Trim()), Email = parts[3].Trim()})
+                .Where(x => today.Month == x.DateOfBirth.Month && today.Day == x.DateOfBirth.Day)
+                .ToList();
 
-            if (today.Month == date.Month && today.Day == date.Day)
+            foreach (var e in employee)
             {
                 using (var smtpClient = new SmtpClient(smtpConfiguration.Host, smtpConfiguration.Port))
                 {
                     await smtpClient.SendMailAsync(smtpConfiguration.Sender,
-                        email,
+                        e.Email,
                         "Happy birthday!",
-                        $"Happy birthday, dear {name}!");
+                        $"Happy birthday, dear {e.Name}!");
                 }
             }
         }

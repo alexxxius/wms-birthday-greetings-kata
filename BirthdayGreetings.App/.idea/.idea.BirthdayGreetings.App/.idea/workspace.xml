@@ -25,6 +25,7 @@
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/SmtpConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/App.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/AppTests.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/GreetingsApp.cs" />
       </list>
     </option>
   </component>
