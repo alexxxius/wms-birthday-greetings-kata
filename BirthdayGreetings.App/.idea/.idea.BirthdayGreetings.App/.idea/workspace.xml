@@ -20,7 +20,11 @@
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/one-birthday-employee-data.txt" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/FileConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/SmtpConfiguration.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/FileConfiguration.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/App.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/AppTests.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/Program.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/SmtpConfiguration.cs" />
       </list>
     </option>
   </component>
