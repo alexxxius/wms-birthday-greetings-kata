@@ -41,6 +41,7 @@
           </e>
         </e>
         <e p="Support" t="Include">
+          <e p="EmployeeFile.cs" t="Include" />
           <e p="ReceivedMail.cs" t="Include" />
         </e>
       </e>

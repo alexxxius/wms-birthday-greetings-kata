@@ -24,7 +24,6 @@ with the first name of the employee substituted for “John”
 ### Test List
 
 ## misc
-- move AppTests.{EmployeeFile, Employee, Header, Date} in Support
 - parsing con metodi ad-hoc
 - duplicazione Trim(s) sui singoli valori parsati dal file
 - parse file content
