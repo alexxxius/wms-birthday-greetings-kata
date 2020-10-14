@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
 using BirthdayGreetings.App;
 using Xunit;
 
@@ -25,6 +24,30 @@ namespace BirthdayGreetings.Tests
             var dateOfBirth = new DateOfBirth(11, 8);
             var isBirthday = dateOfBirth.IsBirthday(new DateTime(2020, month, day));
             Assert.False(isBirthday);
+        }
+
+        [Fact]
+        public void BornOnLeapYearAndCheckYesBirthdayOnCommonYear()
+        {
+            var dateOfBirth = new DateOfBirth(2, 29);
+            var isBirthday = dateOfBirth.IsBirthday(new DateTime(2019, 2, 28));
+            Assert.True(isBirthday);
+        }
+
+        [Fact]
+        public void BornOnLeapYearAndCheckNoBirthdayOnLeapYear()
+        {
+            var dateOfBirth = new DateOfBirth(2, 29);
+            var isBirthday = dateOfBirth.IsBirthday(new DateTime(2020, 2, 28));
+            Assert.False(isBirthday);
+        }
+
+        [Fact]
+        public void BornOnLeapYearAndCheckYesBirthdayOnLeapYear()
+        {
+            var dateOfBirth = new DateOfBirth(2, 29);
+            var isBirthday = dateOfBirth.IsBirthday(new DateTime(2020, 2, 29));
+            Assert.True(isBirthday);
         }
     }
 }
