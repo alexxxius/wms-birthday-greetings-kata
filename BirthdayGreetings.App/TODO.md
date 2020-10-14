@@ -21,20 +21,29 @@ The greetings email contains the following text:
     
 with the first name of the employee substituted for “John”
 
-
 ### Test List
+
+## misc
+- move AppTests.{EmployeeFile, Employee, Header, Date} in Support
 - parsing con metodi ad-hoc
 - duplicazione Trim(s) sui singoli valori parsati dal file
 - parse file content
 - estrare un Employee per ovviare all'oggetto anonimo
 - send notifica
 
-# no birthday
+## leap year
+ A leap year is divisible by 4 and is not divisible by 100 or it is also divisible by 400.
+ 2001 is a typical common year
+ 1996 is a typical leap year
+ 1900 is an atypical common year
+ 2000 is an atypical leap year
+
+## no birthday
 - file con header but no rows => no sends
 
-# many birthdays
+## many birthdays
 
-# non happy path
+## non happy path
 - file mancante => no sends
 - file no-head yes rows => no sends
 - file full empty => no sends

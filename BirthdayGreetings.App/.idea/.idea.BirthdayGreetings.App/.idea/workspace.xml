@@ -27,6 +27,7 @@
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/GreetingsApp.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/FileConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/Program.cs" />
+        <option value="$PROJECT_DIR$/TODO.md" />
       </list>
     </option>
   </component>
@@ -88,9 +89,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="462" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601392273395" />
-    <state x="626" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1601460288849">
+    <state x="627" y="230" width="672" height="678" key="search.everywhere.popup" timestamp="1602658163729">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="626" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1601460288849" />
+    <state x="627" y="230" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602658163729" />
   </component>
 </project>
