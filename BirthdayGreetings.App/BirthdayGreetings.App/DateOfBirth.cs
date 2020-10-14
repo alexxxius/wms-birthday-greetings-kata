@@ -2,7 +2,7 @@
 
 namespace BirthdayGreetings.App
 {
-    public class DateOfBirth
+    public sealed class DateOfBirth
     {
         readonly Int32 month;
         readonly Int32 day;
@@ -14,6 +14,23 @@ namespace BirthdayGreetings.App
             this.day = day;
             isBornOnLeapYear = this.month == 2 && this.day == 29;
         }
+
+        public override string ToString() =>
+            $"{nameof(month)}: {month}, {nameof(day)}: {day}";
+
+        bool Equals(DateOfBirth other) => month == other.month && day == other.day;
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != typeof(DateOfBirth)) return false;
+            return Equals((DateOfBirth) obj);
+        }
+
+        public override int GetHashCode() => HashCode.Combine(month, day);
+        public static bool operator ==(DateOfBirth left, DateOfBirth right) => Equals(left, right);
+        public static bool operator !=(DateOfBirth left, DateOfBirth right) => !Equals(left, right);
 
         public bool IsBirthday(DateTime today) =>
             isBornOnLeapYear && IsCommonYear(today) 

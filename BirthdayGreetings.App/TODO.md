@@ -103,3 +103,34 @@ class LineTest
     var o = Order(mockL1, Line(12, 1))
     o.setDiscount(L1, 5)
     AssertWasCalled(mockL1.setDiscount(5))
+
+
+
+### Object stereotypes
+Entity/Aggregate/StatefulObject => Order
+    - Have identity Order.Number
+    - Have lifecycle Placed, InProgress, Done
+    - Have mutable state over time
+    
+ValueObjects => Money, Eur, M3, EurOverM3, Date, DateOfBirth
+    - MODEL FIXED QUANTITIES
+    - IMMUTABLE
+    - NO IDENTITY FIELD
+    - EQUAL IF THEY HAVE SAME STATE
+
+
+Date
+DateRage(from, to)
+ReservationPeriod(DateRange)
+Reservation
+    Id: ReservationId
+    Period: ReservationPeriod
+    
+data ReservationId = ReservationId UUID
+type ReservationId = ReservationId of GUID
+class ReservationId : NewType<ReservationId, Guid> {
+        public ReservationId(Guid value) : base(value) {}
+}
+
+list<double>
+    .Select(x => x.toInt.toString)

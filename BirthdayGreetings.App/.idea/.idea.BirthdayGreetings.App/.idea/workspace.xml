@@ -31,8 +31,8 @@
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/Support/EmployeeFile.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/AppTests.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/DateOfBirthTests.cs" />
-        <option value="$PROJECT_DIR$/BirthdayGreetings.App/DateOfBirth.cs" />
         <option value="$PROJECT_DIR$/TODO.md" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/DateOfBirth.cs" />
       </list>
     </option>
   </component>
@@ -86,17 +86,17 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1878" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601392009707" />
-    <state x="832" y="219" key="RiderGenerateDialog" timestamp="1601460357975">
+    <state x="832" y="219" width="555" height="587" key="RiderGenerateDialog" timestamp="1602671947321">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="832" y="219" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1601460357975" />
+    <state x="832" y="219" width="555" height="587" key="RiderGenerateDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1602671947321" />
     <state x="462" y="165" key="SettingsEditor" timestamp="1601392273395">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="462" y="165" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1601392273395" />
-    <state x="628" y="231" width="672" height="678" key="search.everywhere.popup" timestamp="1602660328922">
+    <state x="630" y="233" width="672" height="678" key="search.everywhere.popup" timestamp="1602669810100">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="628" y="231" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602660328922" />
+    <state x="630" y="233" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1602669810100" />
   </component>
 </project>
