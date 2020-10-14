@@ -32,6 +32,7 @@
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/Support/EmployeeFile.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/AppTests.cs" />
         <option value="$PROJECT_DIR$/TODO.md" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/DateOfBirthTests.cs" />
       </list>
     </option>
   </component>
