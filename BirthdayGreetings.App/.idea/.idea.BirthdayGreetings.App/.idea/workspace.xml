@@ -24,15 +24,15 @@
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/FileConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/SmtpConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/App.cs" />
-        <option value="$PROJECT_DIR$/BirthdayGreetings.App/DateOfBirth.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/SmtpConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/GreetingsApp.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/FileConfiguration.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.App/Program.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/Support/EmployeeFile.cs" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/AppTests.cs" />
-        <option value="$PROJECT_DIR$/TODO.md" />
         <option value="$PROJECT_DIR$/BirthdayGreetings.Tests/DateOfBirthTests.cs" />
+        <option value="$PROJECT_DIR$/BirthdayGreetings.App/DateOfBirth.cs" />
+        <option value="$PROJECT_DIR$/TODO.md" />
       </list>
     </option>
   </component>

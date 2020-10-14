@@ -30,13 +30,6 @@ with the first name of the employee substituted for “John”
 - estrare un Employee per ovviare all'oggetto anonimo
 - send notifica
 
-## leap year
- A leap year is divisible by 4 and is not divisible by 100 or it is also divisible by 400.
- 2001 is a typical common year
- 1996 is a typical leap year
- 1900 is an atypical common year
- 2000 is an atypical leap year
-
 ## no birthday
 - file con header but no rows => no sends
 
@@ -50,3 +43,63 @@ with the first name of the employee substituted for “John”
 - righe duplicate
 - receiver email not valid
 - smtp unreachable
+
+
+
+
+# Test Matrix Examples
+Video: https://www.youtube.com/watch?v=URSWYvyc42M
+
+class Order
+    AddLine(line)
+        lines.Add(line)
+    SetDiscount(value)
+        lookUp(L1).setDiscount(value) 
+    Total
+        Sum(Lines, acc, cur => acc + cur.LineTotal)
+
+class Line
+    Price
+    Qty
+    LineTotal
+
+
+class LineTest
+    // In - Qry
+    var o = Line(10, 1)
+    Assert(10, o.Price)
+
+    // In - Qry
+    var o = Line(10, 2)
+    Assert(20, o.LineTotal)
+
+    // In - Cmd
+    var o = Line(10, 1)
+    o.SetDiscount(5)
+    Assert(5, o.LineTotal)
+    
+ class OrderTests
+    // Order.Total - In - Qry
+    // Line.LineTotal - Out - Qry
+    var o = Order(Line(10, 1), Line(12, 1))
+    Assert(22, o.Total)
+
+    // In - Cmd
+    var o = Order(Line(10, 2), Line(12, 1))
+    o.addLine(Line(32))
+    Assert(62, o.Total)
+
+    // Out - Cmd - Bad version
+    var o = Order(mockL1, Line(12, 1))
+    o.setDiscount(L1, 5) // lookUp(L1).setDiscount(5)
+    Assert(5, o.lookUp(L1).Price)  <-- NO, bad design test
+    
+    // Out - Cmd - Direct result
+    var o = Order(Line(10, 2), Line(12, 1))
+    o.setDiscount(L1, 5) // lookUp(L1).setDiscount(5)
+    Assert(27, o.Total)
+    
+    // Out - Cmd - Mock
+    var o = Order(mockL1, Line(12, 1))
+    o.setDiscount(L1, 5)
+    AssertWasCalled(mockL1.setDiscount(5))
