@@ -40,21 +40,6 @@ namespace BirthdayGreetings.Tests
         }
 
         [Fact]
-        public async Task SendOneGreetingWhenOneBirthday()
-        {
-            File(fileConfiguration.FilePath, Header(), Employee("Mary", "1975/09/11", "mary.ann@foobar.com"));
-
-            await app.Run(Date("11/09/2020"));
-
-            ReceivedMail.FromAll(smtpServer)
-                .Should()
-                .BeEquivalentTo(new ReceivedMail(smtpConfiguration.Sender,
-                    "mary.ann@foobar.com",
-                    "Happy birthday!",
-                    "Happy birthday, dear Mary!"));
-        }
-
-        [Fact]
         public async Task NoSendsGreetingWhenNoBirthdays()
         {
             File(fileConfiguration.FilePath, Header(), Employee("Mary", "1982/11/08", "mary.ann@foobar.com"));
