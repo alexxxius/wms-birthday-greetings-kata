@@ -1,20 +1,19 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net.Mail;
 using System.Threading.Tasks;
 
 namespace BirthdayGreetings.App
 {
-    public class GreetingsApp
+    public class GreetingsApp : IDisposable
     {
         readonly FileConfiguration fileConfiguration;
-        readonly SmtpConfiguration smtpConfiguration;
+        readonly SmtpGreetingsNotification smtpGreetingsNotification;
 
         public GreetingsApp(FileConfiguration fileConfiguration, SmtpConfiguration smtpConfiguration)
         {
             this.fileConfiguration = fileConfiguration;
-            this.smtpConfiguration = smtpConfiguration;
+            smtpGreetingsNotification = new SmtpGreetingsNotification(smtpConfiguration);
         }
 
         public Task RunOnToday() =>
@@ -34,24 +33,17 @@ namespace BirthdayGreetings.App
                 
                 .Select(parts => new
                 {
-                    Name = parts[1],
                     DateOfBirth = DateOfBirth.From(parts[2]),
-                    Email = parts[3]
+                    Info = new EmailInfo(parts[1], parts[3])
                 })
-                
                 .Where(x => x.DateOfBirth.IsBirthday(today))
-                
+                .Select(x => x.Info)
                 .ToList();
 
-            using var smtpClient = new SmtpClient(smtpConfiguration.Host, smtpConfiguration.Port);
-
-            foreach (var e in employee)
-            {
-                await smtpClient.SendMailAsync(smtpConfiguration.Sender,
-                    e.Email,
-                    "Happy birthday!",
-                    $"Happy birthday, dear {e.Name}!");
-            }
+            await smtpGreetingsNotification.SendBirthday(employee);
         }
+
+        public void Dispose() => 
+           smtpGreetingsNotification?.Dispose();
     }
 }

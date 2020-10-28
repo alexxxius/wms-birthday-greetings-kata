@@ -25,18 +25,24 @@ namespace BirthdayGreetings.Tests
         };
 
         readonly SimpleSmtpServer smtpServer;
+        readonly GreetingsApp app;
 
-        public AppTests() =>
+        public AppTests()
+        {
             smtpServer = SimpleSmtpServer.Start(smtpConfiguration.Port);
+            app = new GreetingsApp(fileConfiguration, smtpConfiguration);
+        }
 
-        public void Dispose() =>
+        public void Dispose()
+        {
+            app.Dispose();
             smtpServer.Dispose();
+        }
 
         [Fact]
         public async Task SendOneGreetingWhenOneBirthday()
         {
             File(fileConfiguration.FilePath, Header(), Employee("Mary", "1975/09/11", "mary.ann@foobar.com"));
-            var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.Run(Date("11/09/2020"));
 
@@ -52,7 +58,6 @@ namespace BirthdayGreetings.Tests
         public async Task NoSendsGreetingWhenNoBirthdays()
         {
             File(fileConfiguration.FilePath, Header(), Employee("Mary", "1982/11/08", "mary.ann@foobar.com"));
-            var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.Run(Date("11/09/2020"));
 
@@ -69,7 +74,6 @@ namespace BirthdayGreetings.Tests
                 Employee("Matteo", "1982/09/11", "matteo@doubleloop.io"),
                 Employee("John", "1982/10/08", "john.doe@foobar.com"),
                 Employee("Mary", "1975/09/11", "mary.ann@foobar.com"));
-            var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.Run(Date("11/09/2020"));
 

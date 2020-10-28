@@ -10,7 +10,7 @@ namespace BirthdayGreetings.App
             var smtpConfiguration = SmtpConfiguration.From(ConfigurationManager.AppSettings);
             var fileConfiguration = FileConfiguration.From(ConfigurationManager.AppSettings);
             
-            var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
+            using var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.RunOnToday();
         }
