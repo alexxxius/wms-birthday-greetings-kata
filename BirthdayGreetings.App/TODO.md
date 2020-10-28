@@ -24,9 +24,6 @@ with the first name of the employee substituted for “John”
 ### Test List
 
 ## misc
-- parsing con metodi ad-hoc
-- parse file content
-- estrare un Employee per ovviare all'oggetto anonimo
 
 ## no birthday
 - file con header but no rows => no sends

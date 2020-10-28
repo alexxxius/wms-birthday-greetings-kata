@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace BirthdayGreetings.App
@@ -21,28 +20,15 @@ namespace BirthdayGreetings.App
         public async Task Run(DateTime today)
         {
             var allEmployees = await employeeCatalog.Load();
-
-            var birthdayEmployees = allEmployees
-                .Where(x => x.DateOfBirth.IsBirthday(today))
-                .Select(x => x.EmailInfo)
-                .ToList();
-
+            
+            var birthdayEmployees = 
+                new BirthdayFilter(allEmployees)
+                    .Apply(today);
+            
             await smtpGreetingsNotification.SendBirthday(birthdayEmployees);
         }
 
         public void Dispose() =>
             smtpGreetingsNotification?.Dispose();
-    }
-
-    public class Employee
-    {
-        public DateOfBirth DateOfBirth { get; }
-        public EmailInfo EmailInfo { get; }
-
-        public Employee(DateOfBirth dateOfBirth, EmailInfo emailInfo)
-        {
-            DateOfBirth = dateOfBirth;
-            EmailInfo = emailInfo;
-        }
     }
 }
