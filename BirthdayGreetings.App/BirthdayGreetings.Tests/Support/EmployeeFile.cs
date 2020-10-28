@@ -12,6 +12,11 @@ namespace BirthdayGreetings.Tests.Support
         public static String Employee(String name, String date, String email) =>
             $"Ann, {name}, {date}, {email}";
 
+        public static String MissingName(String date, String email) =>
+            $"Ann,, {date}, {email}";
+        
+        public static String WrongSeparator(String name, String date, String email) =>
+            $"Ann; {name}; {date}; {email}";
         public static String Header() =>
             "last_name, first_name, date_of_birth, email";
     }

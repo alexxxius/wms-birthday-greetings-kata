@@ -2,7 +2,6 @@
 using BirthdayGreetings.App;
 using FluentAssertions;
 using Xunit;
-using Xunit.Sdk;
 using static BirthdayGreetings.Tests.Support.EmployeeFile;
 
 namespace BirthdayGreetings.Tests
@@ -43,14 +42,5 @@ namespace BirthdayGreetings.Tests
             employees.Should()
                 .BeEmpty("", employees);
         }
-        
-        /*
-         * TODO:
-- file no-head yes rows => no sends
-- file full empty => no sends
-- righe malformattate
-- righe duplicate
-         * 
-         */
     }
 }
