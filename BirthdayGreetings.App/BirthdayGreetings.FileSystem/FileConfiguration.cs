@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 
-namespace BirthdayGreetings.App
+namespace BirthdayGreetings.FileSystem
 {
     public class FileConfiguration
     {
@@ -9,7 +9,7 @@ namespace BirthdayGreetings.App
 
         public static FileConfiguration From(NameValueCollection appSettings)
         {
-            throw new NotImplementedException();
+            return new FileConfiguration();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BirthdayGreetings.App
+namespace BirthdayGreetings.Core
 {
     public sealed class DateOfBirth
     {

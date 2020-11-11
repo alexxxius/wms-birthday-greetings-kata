@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BirthdayGreetings.App;
+using BirthdayGreetings.Core;
 using Xunit;
 
 namespace BirthdayGreetings.Tests
@@ -8,11 +9,11 @@ namespace BirthdayGreetings.Tests
     public class BirthdayFilterTests
     {
         [Fact]
-        public void NoEmployee()
+        public void NoEmployees()
         {
             var employees = new List<Employee>();
             var result = new BirthdayFilter(employees)
-                .Apply(DateTime.Today);
+                .Apply(new DateTime(2020, 11, 10));
             Assert.Empty(result);
         }
         

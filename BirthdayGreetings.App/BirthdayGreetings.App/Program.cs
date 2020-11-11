@@ -1,5 +1,7 @@
 ﻿using System.Configuration;
 using System.Threading.Tasks;
+using BirthdayGreetings.FileSystem;
+using BirthdayGreetings.Smtp;
 
 namespace BirthdayGreetings.App
 {
@@ -9,7 +11,6 @@ namespace BirthdayGreetings.App
         {
             var smtpConfiguration = SmtpConfiguration.From(ConfigurationManager.AppSettings);
             var fileConfiguration = FileConfiguration.From(ConfigurationManager.AppSettings);
-            
             using var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
 
             await app.RunOnToday();

@@ -7,6 +7,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayGreetings.App", "Bi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayGreetings.Tests", "BirthdayGreetings.Tests\BirthdayGreetings.Tests.csproj", "{F4E3B0BE-0ADA-4225-885A-930B717FE2A8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayGreetings.FileSystem", "BirthdayGreetings.FileSystem\BirthdayGreetings.FileSystem.csproj", "{B1FCA8FB-D386-4D8B-A9FC-000FCF5BB068}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayGreetings.Smtp", "BirthdayGreetings.Smtp\BirthdayGreetings.Smtp.csproj", "{0396D6D2-786A-454B-8734-26B08312F873}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayGreetings.Core", "BirthdayGreetings.Core\BirthdayGreetings.Core.csproj", "{CFF9717A-AD36-4E08-8662-E8BE413254EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayGreetings.MongoDb", "BirthdayGreetings.MongoDb\BirthdayGreetings.MongoDb.csproj", "{2B536C5A-F87C-4F27-A6EF-5116652D5FB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirthdayGreetings.WebApp", "BirthdayGreetings.WebApp\BirthdayGreetings.WebApp.csproj", "{C29D8B20-19A8-4168-BBCB-451D9E957418}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +31,26 @@ Global
 		{F4E3B0BE-0ADA-4225-885A-930B717FE2A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4E3B0BE-0ADA-4225-885A-930B717FE2A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4E3B0BE-0ADA-4225-885A-930B717FE2A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1FCA8FB-D386-4D8B-A9FC-000FCF5BB068}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1FCA8FB-D386-4D8B-A9FC-000FCF5BB068}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1FCA8FB-D386-4D8B-A9FC-000FCF5BB068}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1FCA8FB-D386-4D8B-A9FC-000FCF5BB068}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0396D6D2-786A-454B-8734-26B08312F873}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0396D6D2-786A-454B-8734-26B08312F873}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0396D6D2-786A-454B-8734-26B08312F873}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0396D6D2-786A-454B-8734-26B08312F873}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFF9717A-AD36-4E08-8662-E8BE413254EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFF9717A-AD36-4E08-8662-E8BE413254EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFF9717A-AD36-4E08-8662-E8BE413254EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFF9717A-AD36-4E08-8662-E8BE413254EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B536C5A-F87C-4F27-A6EF-5116652D5FB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B536C5A-F87C-4F27-A6EF-5116652D5FB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B536C5A-F87C-4F27-A6EF-5116652D5FB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B536C5A-F87C-4F27-A6EF-5116652D5FB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C29D8B20-19A8-4168-BBCB-451D9E957418}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C29D8B20-19A8-4168-BBCB-451D9E957418}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C29D8B20-19A8-4168-BBCB-451D9E957418}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C29D8B20-19A8-4168-BBCB-451D9E957418}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

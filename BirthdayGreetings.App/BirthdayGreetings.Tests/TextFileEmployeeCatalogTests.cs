@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using BirthdayGreetings.App;
+using BirthdayGreetings.Core;
+using BirthdayGreetings.FileSystem;
 using FluentAssertions;
 using Xunit;
 using static BirthdayGreetings.Tests.Support.EmployeeFile;

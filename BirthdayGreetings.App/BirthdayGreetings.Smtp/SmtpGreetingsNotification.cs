@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using BirthdayGreetings.Core;
 
-namespace BirthdayGreetings.App
+namespace BirthdayGreetings.Smtp
 {
-    public class SmtpGreetingsNotification : IDisposable
+    // Adapter in Port/Adapter architecture
+    public class SmtpGreetingsNotification : IDisposable, IGreetingsNotification
     {
         readonly SmtpConfiguration configuration;
         readonly ISendHooks hooks;

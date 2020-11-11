@@ -1,5 +1,6 @@
 ﻿using System;
 using BirthdayGreetings.App;
+using BirthdayGreetings.Core;
 using Xunit;
 
 namespace BirthdayGreetings.Tests

@@ -1,4 +1,4 @@
-﻿namespace BirthdayGreetings.App
+﻿namespace BirthdayGreetings.Core
 {
     public class Employee
     {

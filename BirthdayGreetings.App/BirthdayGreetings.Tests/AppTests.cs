@@ -2,6 +2,8 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using BirthdayGreetings.App;
+using BirthdayGreetings.FileSystem;
+using BirthdayGreetings.Smtp;
 using BirthdayGreetings.Tests.Support;
 using FluentAssertions;
 using netDumbster.smtp;

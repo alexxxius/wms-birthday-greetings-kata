@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Specialized;
 
-namespace BirthdayGreetings.App
+namespace BirthdayGreetings.Smtp
 {
     public class SmtpConfiguration
     {
@@ -11,7 +11,7 @@ namespace BirthdayGreetings.App
 
         public static SmtpConfiguration From(NameValueCollection appSettings)
         {
-            throw new NotImplementedException();
+            return new SmtpConfiguration();
         }
     }
     

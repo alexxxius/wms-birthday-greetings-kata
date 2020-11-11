@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BirthdayGreetings.App
+namespace BirthdayGreetings.Core
 {
     public class BirthdayFilter
     {

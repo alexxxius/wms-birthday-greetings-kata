@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BirthdayGreetings.App\BirthdayGreetings.App.csproj" />
+    <ProjectReference Include="..\BirthdayGreetings.WebApp\BirthdayGreetings.WebApp.csproj" />
   </ItemGroup>
 
 </Project>

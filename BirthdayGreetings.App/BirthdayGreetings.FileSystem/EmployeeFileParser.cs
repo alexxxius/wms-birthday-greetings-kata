@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BirthdayGreetings.Core;
 
-namespace BirthdayGreetings.App
+namespace BirthdayGreetings.FileSystem
 {
     public static class EmployeeFileParser
     {
@@ -10,7 +11,7 @@ namespace BirthdayGreetings.App
             lines
                 .Skip(1) // NOTE: skip header
                 .Select(ParseLine)
-                .ToList<Employee>();
+                .ToList();
 
         public static Employee ParseLine(String line)
         {
@@ -19,7 +20,7 @@ namespace BirthdayGreetings.App
             
             var parts = SplitLine(line);
             return new Employee(
-                DateOfBirth.From((String) parts[2]),
+                DateOfBirth.From(parts[2]),
                 new EmailInfo(parts[1], parts[3])
             );
         }

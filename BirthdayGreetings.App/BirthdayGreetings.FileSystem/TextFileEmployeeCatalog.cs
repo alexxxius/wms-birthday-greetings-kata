@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using BirthdayGreetings.Core;
 
-namespace BirthdayGreetings.App
+namespace BirthdayGreetings.FileSystem
 {
-    public class TextFileEmployeeCatalog
+    // Adapter in Port/Adapter architecture
+    public class TextFileEmployeeCatalog : IEmployeeCatalog
     {
         readonly FileConfiguration configuration;
 
