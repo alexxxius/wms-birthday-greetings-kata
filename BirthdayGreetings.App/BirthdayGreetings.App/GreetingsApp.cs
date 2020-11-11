@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using BirthdayGreetings.Core;
 using BirthdayGreetings.FileSystem;
-using BirthdayGreetings.MongoDb;
 using BirthdayGreetings.Smtp;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Driver;
 
 namespace BirthdayGreetings.App
 {
@@ -19,11 +15,17 @@ namespace BirthdayGreetings.App
         public GreetingsApp(FileConfiguration fileConfiguration, SmtpConfiguration smtpConfiguration)
         {
             var services = new ServiceCollection();
+            
             services
-                .AddSingleton<IEmployeeCatalog>(sp => new TextFileEmployeeCatalog(fileConfiguration))
-                .AddSingleton<IGreetingsNotification>(sp => new SmtpGreetingsNotification(smtpConfiguration))
-                .AddSingleton<IBirthdayService, DefaultBirthdayService>();
-
+                    
+            .AddSingleton(new TextFileEmployeeCatalog(fileConfiguration))
+            .AddSingleton<IEmployeeCatalog>(sp => sp.GetService<TextFileEmployeeCatalog>())
+            
+            .AddSingleton(new SmtpGreetingsNotification(smtpConfiguration))
+            .AddSingleton<IGreetingsNotification>(sp => sp.GetService<SmtpGreetingsNotification>())
+            
+            .AddSingleton<IBirthdayService, DefaultBirthdayService>();
+            
             serviceProvider = services.BuildServiceProvider();
         }
 
