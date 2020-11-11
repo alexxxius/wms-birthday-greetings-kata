@@ -15,17 +15,10 @@ namespace BirthdayGreetings.App
         public GreetingsApp(FileConfiguration fileConfiguration, SmtpConfiguration smtpConfiguration)
         {
             var services = new ServiceCollection();
-            
             services
-                    
-            .AddSingleton(new TextFileEmployeeCatalog(fileConfiguration))
-            .AddSingleton<IEmployeeCatalog>(sp => sp.GetService<TextFileEmployeeCatalog>())
-            
-            .AddSingleton(new SmtpGreetingsNotification(smtpConfiguration))
-            .AddSingleton<IGreetingsNotification>(sp => sp.GetService<SmtpGreetingsNotification>())
-            
-            .AddSingleton<IBirthdayService, DefaultBirthdayService>();
-            
+                .AddTextFileEmployeeCatalog(fileConfiguration)
+                .AddSmtpGreetingsNotification(smtpConfiguration)
+                .AddCore();
             serviceProvider = services.BuildServiceProvider();
         }
 

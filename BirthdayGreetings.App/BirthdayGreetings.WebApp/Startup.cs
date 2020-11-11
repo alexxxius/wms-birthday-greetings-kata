@@ -30,9 +30,9 @@ namespace BirthdayGreetings.WebApp
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddSingleton<IEmployeeCatalog>(sp => new TextFileEmployeeCatalog(null))
-                .AddSingleton<IGreetingsNotification>(sp => new SmtpGreetingsNotification(null))
-                .AddSingleton<IBirthdayService, DefaultBirthdayService>();
+                .AddTextFileEmployeeCatalog(FileConfiguration.From(Configuration))
+                .AddSmtpGreetingsNotification(SmtpConfiguration.From(Configuration))
+                .AddCore();
             
             services.AddControllers();
         }

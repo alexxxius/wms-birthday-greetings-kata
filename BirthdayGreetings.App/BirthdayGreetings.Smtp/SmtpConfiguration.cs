@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Specialized;
+using Microsoft.Extensions.Configuration;
 
 namespace BirthdayGreetings.Smtp
 {
@@ -11,7 +12,12 @@ namespace BirthdayGreetings.Smtp
 
         public static SmtpConfiguration From(NameValueCollection appSettings)
         {
-            return new SmtpConfiguration();
+            throw new NotImplementedException();
+        }
+
+        public static SmtpConfiguration From(IConfiguration configuration)
+        {
+            throw new NotImplementedException();
         }
     }
     
