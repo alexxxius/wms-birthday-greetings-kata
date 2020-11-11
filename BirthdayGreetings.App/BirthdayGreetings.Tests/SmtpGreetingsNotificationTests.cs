@@ -1,8 +1,5 @@
-﻿using System;
-using System.Net.Mail;
-using System.Threading;
+﻿using System.Net.Mail;
 using System.Threading.Tasks;
-using BirthdayGreetings.App;
 using BirthdayGreetings.Core;
 using BirthdayGreetings.Smtp;
 using BirthdayGreetings.Tests.Support;

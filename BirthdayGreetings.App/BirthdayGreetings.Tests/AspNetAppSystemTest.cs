@@ -6,7 +6,7 @@ namespace BirthdayGreetings.Tests
 {
     public class AspNetAppSystemTest
     {
-        [Fact]
+        [Fact(Skip = "not fully implemented")]
         public async Task Run()
         {
             var server = Task.Run(() =>
