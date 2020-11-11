@@ -22,7 +22,7 @@ namespace BirthdayGreetings.App
             serviceProvider = services.BuildServiceProvider();
         }
 
-        public Task RunOnToday() => 
+        public Task RunOnToday() =>
             Run(DateTime.Today);
 
         public Task Run(DateTime today)
@@ -31,10 +31,10 @@ namespace BirthdayGreetings.App
             if (service == null)
                 throw new InvalidOperationException();
             return service
-                    .SendGreetings(today);
+                .SendGreetings(today);
         }
 
-        public void Dispose() => 
+        public void Dispose() =>
             serviceProvider?.Dispose();
     }
 }

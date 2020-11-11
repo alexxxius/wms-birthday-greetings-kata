@@ -1,7 +1,7 @@
-﻿using System.Configuration;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BirthdayGreetings.FileSystem;
 using BirthdayGreetings.Smtp;
+using Microsoft.Extensions.Configuration;
 
 namespace BirthdayGreetings.App
 {
@@ -9,10 +9,18 @@ namespace BirthdayGreetings.App
     {
         static async Task Main()
         {
-            var smtpConfiguration = SmtpConfiguration.From(ConfigurationManager.AppSettings);
-            var fileConfiguration = FileConfiguration.From(ConfigurationManager.AppSettings);
+            var configuration = BuildConfiguration();
+            var smtpConfiguration = SmtpConfiguration.From(configuration);
+            var fileConfiguration = FileConfiguration.From(configuration);
+
             using var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
             await app.RunOnToday();
         }
+
+        static IConfiguration BuildConfiguration() =>
+            new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables()
+                .Build();
     }
 }

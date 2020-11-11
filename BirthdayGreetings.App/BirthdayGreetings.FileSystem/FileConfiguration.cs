@@ -8,11 +8,6 @@ namespace BirthdayGreetings.FileSystem
     {
         public String FilePath { get; set; }
 
-        public static FileConfiguration From(NameValueCollection appSettings)
-        {
-            throw new NotImplementedException();
-        }
-
         public static FileConfiguration From(IConfiguration configuration)
         {
             throw new NotImplementedException();

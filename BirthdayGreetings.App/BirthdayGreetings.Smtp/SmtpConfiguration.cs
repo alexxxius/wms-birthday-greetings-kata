@@ -10,11 +10,6 @@ namespace BirthdayGreetings.Smtp
         public Int32 Port { get; set; }
         public String Sender { get; set; }
 
-        public static SmtpConfiguration From(NameValueCollection appSettings)
-        {
-            throw new NotImplementedException();
-        }
-
         public static SmtpConfiguration From(IConfiguration configuration)
         {
             throw new NotImplementedException();
