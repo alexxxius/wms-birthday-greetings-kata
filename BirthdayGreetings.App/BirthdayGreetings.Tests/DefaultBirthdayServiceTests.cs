@@ -12,31 +12,31 @@ namespace BirthdayGreetings.Tests
     public class DefaultBirthdayServiceTests
     {
         [Fact]
-        public void NoSendsGreetingWhenNoBirthdays()
+        public async Task NoSendsGreetingWhenNoBirthdays()
         {
             var employeeCatalog = new StubNoEmployeesCatalog();
             var greetingsNotification = new SpyGreetingsNotificationHistory();
             var service = new DefaultBirthdayService(employeeCatalog, greetingsNotification);
 
-            service.SendGreetings(new DateTime(2020, 11, 25));
+            await service.SendGreetings(new DateTime(2020, 11, 25));
 
             Assert.Empty(greetingsNotification.EmailSent);
         }
         
         [Fact]
-        public void NoSendsGreetingWhenNoBirthdays_InMem()
+        public async Task NoSendsGreetingWhenNoBirthdays_InMem()
         {
             var employeeCatalog = new InMemoryEmployeeCatalog();
             var greetingsNotification = new InMemoryGreetingsNotification();
             var service = new DefaultBirthdayService(employeeCatalog, greetingsNotification);
 
-            service.SendGreetings(new DateTime(2020, 11, 25));
+            await service.SendGreetings(new DateTime(2020, 11, 25));
 
             Assert.Empty(greetingsNotification.EmailSent);
         }
         
         [Fact]
-        public void NoSendsGreetingWhenNoBirthdays_()
+        public async Task NoSendsGreetingWhenNoBirthdays_()
         {
             var employeeCatalog = new StubNoEmployeesCatalog();
             var greetingsNotification = new MockGreetingsNotigication();
@@ -44,13 +44,13 @@ namespace BirthdayGreetings.Tests
 
             greetingsNotification
                 .ExpectSendBirthdayCalledEmptyList();
-            service.SendGreetings(new DateTime(2020, 11, 25));
+            await service.SendGreetings(new DateTime(2020, 11, 25));
 
             greetingsNotification.Verify();
         }
         
         [Fact]
-        public void NoSendsGreetingWhenNoBirthdays_Moq()
+        public async Task NoSendsGreetingWhenNoBirthdays_Moq()
         {
             // Mock<> == Test Double Factory
             var employeeCatalog = new Mock<IEmployeeCatalog>();
@@ -59,14 +59,14 @@ namespace BirthdayGreetings.Tests
 
             // stub - canned result - query
             employeeCatalog.Setup(x => x.Load()).Returns(Task.FromResult(new List<Employee>()));
-            service.SendGreetings(new DateTime(2020, 11, 25));
+            await service.SendGreetings(new DateTime(2020, 11, 25));
 
             // mock - verify expectation - command
             greetingsNotification.Verify(x => x.SendBirthday(new List<EmailInfo>()));
         }
         
         [Fact(Skip = "demo")]
-        public void NoSendsGreetingWhenNoBirthdays_Moq_Drift()
+        public async Task NoSendsGreetingWhenNoBirthdays_Moq_Drift()
         {
             // Mock<> == Test Double Factory
             var employeeCatalog = new Mock<IEmployeeCatalog>();
@@ -75,7 +75,7 @@ namespace BirthdayGreetings.Tests
 
             // stub - canned result - query
             employeeCatalog.Setup(x => x.Load()).Returns(Task.FromResult<List<Employee>>(null));
-            service.SendGreetings(new DateTime(2020, 11, 25));
+            await service.SendGreetings(new DateTime(2020, 11, 25));
 
             // mock - verify expectation - command
             greetingsNotification.Verify(x => x.SendBirthday(new List<EmailInfo>()));
