@@ -19,5 +19,11 @@ namespace BirthdayGreetings.MongoDb
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Employee>> LoadBy(DateOfBirth dateOfBirth)
+        {
+            // TODO: create filter query by born date
+            throw new NotImplementedException();
+        }
     }
 }

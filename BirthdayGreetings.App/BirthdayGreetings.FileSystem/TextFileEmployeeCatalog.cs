@@ -20,6 +20,12 @@ namespace BirthdayGreetings.FileSystem
             return EmployeeFileParser.ParseLines(lines);
         }
 
+        public Task<List<Employee>> LoadBy(DateOfBirth dateOfBirth)
+        {
+            // TODO: add filter logic by born date
+            throw new NotImplementedException();
+        }
+
         async Task<String[]> LoadLinesOrDefault()
         {
             try
