@@ -16,7 +16,7 @@ namespace BirthdayGreetings.App
 
         public Task<List<Employee>> Load() =>
             Task.Delay(10)
-                .ContinueWith(_ => es.Length != 0 ?  es.ToList() : null);
+                .ContinueWith(_ => es.ToList());
 
         public Task<List<Employee>> LoadBy(DateOfBirth dateOfBirth) =>
             Task.Delay(10)

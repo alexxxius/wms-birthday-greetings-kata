@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using BirthdayGreetings.App;
+﻿using System;
+using System.Threading.Tasks;
 using BirthdayGreetings.Core;
 using BirthdayGreetings.FileSystem;
 using FluentAssertions;
@@ -8,31 +8,29 @@ using static BirthdayGreetings.Tests.Support.EmployeeFile;
 
 namespace BirthdayGreetings.Tests
 {
-    public class TextFileEmployeeCatalogTests
+    public class TextFileEmployeeCatalogTests : EmployeeCatalogTests
     {
         readonly FileConfiguration fileConfiguration = new FileConfiguration
         {
             FilePath = "employees.txt"
         };
 
-        [Fact]
-        public async Task LoadEmployees()
+        protected override IEmployeeCatalog CreateCatalogWithEmployees((String, String, String) employee1, (String, String, String) employee2)
         {
             File(fileConfiguration.FilePath,
                 Header(),
-                Employee("test", "2020/10/28", "a@a.it"),
-                Employee("Mary", "1982/11/08", "mary.ann@foobar.com"));
-            var employeeCatalog = new TextFileEmployeeCatalog(fileConfiguration);
-
-            var employees = await employeeCatalog.Load();
-
-            employees.Should()
-                .BeEquivalentTo(
-                    new Employee(new DateOfBirth(10, 28), new EmailInfo("test", "a@a.it")),
-                    new Employee(new DateOfBirth(11, 08), new EmailInfo("Mary", "mary.ann@foobar.com"))
-                );
+                Employee(employee1),
+                Employee(employee2));
+            return new TextFileEmployeeCatalog(fileConfiguration);
         }
-        
+
+        protected override IEmployeeCatalog CreateEmptyCatalog()
+        {
+            File(fileConfiguration.FilePath,
+                Header());
+            return new TextFileEmployeeCatalog(fileConfiguration);
+        }
+
         [Fact]
         public async Task MissingFile()
         {

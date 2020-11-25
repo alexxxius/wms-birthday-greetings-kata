@@ -1,55 +1,26 @@
 ﻿using System;
-using System.Threading.Tasks;
 using BirthdayGreetings.App;
 using BirthdayGreetings.Core;
-using BirthdayGreetings.FileSystem;
-using FluentAssertions;
-using Xunit;
 
 namespace BirthdayGreetings.Tests
 {
-    public class InMemoryEmployeeCatalogTests
+    public class InMemoryEmployeeCatalogTests : EmployeeCatalogTests
     {
-        [Fact]
-        public async Task LoadEmployees()
+        static Employee Employee((String name, String date, String email) data)
         {
-            var employeeCatalog = new InMemoryEmployeeCatalog(
-                Employee("test", "2020/10/28", "a@a.it"),
-                Employee("Mary", "1982/11/08", "mary.ann@foobar.com")
-                );
-
-            var employees = await employeeCatalog.Load();
-
-            employees.Should()
-                .BeEquivalentTo(
-                    new Employee(new DateOfBirth(10, 28), new EmailInfo("test", "a@a.it")),
-                    new Employee(new DateOfBirth(11, 08), new EmailInfo("Mary", "mary.ann@foobar.com"))
-                );
-        }
-        
-        [Fact]
-        public async Task LoadEmptyEmployees()
-        {
-            var employeeCatalog = new InMemoryEmployeeCatalog();
-
-            var employees = await employeeCatalog.Load();
-
-            employees.Should()
-                .BeEmpty();
-        }
-        
-        [Fact]
-        public async Task LoadEmptyEmployees_Drift()
-        {
-            var employeeCatalog = new InMemoryEmployeeCatalog();
-
-            var employees = await employeeCatalog.Load();
-
-            employees.Should()
-                .BeNull();
+            var (name, date, email) = data;
+            return Employee(name, date, email);
         }
 
-        Employee Employee(string name, string dateOfBirth, string email) =>
+        static Employee Employee(string name, string dateOfBirth, string email) =>
             new Employee(DateOfBirth.From(dateOfBirth),new EmailInfo(name, email));
+
+        protected override IEmployeeCatalog CreateCatalogWithEmployees((String, String, String) employee1, (String, String, String) employee2) =>
+            new InMemoryEmployeeCatalog(
+                Employee(employee1),
+                Employee(employee2));
+
+        protected override IEmployeeCatalog CreateEmptyCatalog() => 
+            new InMemoryEmployeeCatalog();
     }
 }

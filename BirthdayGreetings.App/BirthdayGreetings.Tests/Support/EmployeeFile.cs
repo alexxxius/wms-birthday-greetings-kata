@@ -9,6 +9,12 @@ namespace BirthdayGreetings.Tests.Support
         public static void File(string fileName, params string[] lines) =>
             System.IO.File.WriteAllLines(fileName, lines);
 
+        public static String Employee((String name, String date, String email) data)
+        {
+            var (name, date, email) = data;
+            return $"Ann, {name}, {date}, {email}";
+        }
+
         public static String Employee(String name, String date, String email) =>
             $"Ann, {name}, {date}, {email}";
 
