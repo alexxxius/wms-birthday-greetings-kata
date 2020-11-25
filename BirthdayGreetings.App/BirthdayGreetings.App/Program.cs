@@ -1,6 +1,4 @@
 ﻿using System.Threading.Tasks;
-using BirthdayGreetings.FileSystem;
-using BirthdayGreetings.Smtp;
 using Microsoft.Extensions.Configuration;
 
 namespace BirthdayGreetings.App
@@ -10,10 +8,12 @@ namespace BirthdayGreetings.App
         static async Task Main()
         {
             var configuration = BuildConfiguration();
-            var smtpConfiguration = SmtpConfiguration.From(configuration);
-            var fileConfiguration = FileConfiguration.From(configuration);
 
-            using var app = new GreetingsApp(fileConfiguration, smtpConfiguration);
+            using var app = new GreetingsAppBuilder()
+                .WithEmployeeCatalog(x => x.FileSystem(configuration))         
+                .WithGreetingsNotification(x => x.Smtp(configuration))         
+                .Build();
+            
             await app.RunOnToday();
         }
 
@@ -23,4 +23,5 @@ namespace BirthdayGreetings.App
                 .AddEnvironmentVariables()
                 .Build();
     }
+
 }

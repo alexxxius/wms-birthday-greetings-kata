@@ -8,6 +8,11 @@ namespace BirthdayGreetings.App
     public class InMemoryEmployeeCatalog : IEmployeeCatalog
     {
         readonly Employee[] es;
+        
+        public InMemoryEmployeeCatalog()
+            :this(new Employee[0])
+        {
+        }
 
         public InMemoryEmployeeCatalog(params Employee[] es)
         {

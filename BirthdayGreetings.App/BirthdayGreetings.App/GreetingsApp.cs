@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
 using BirthdayGreetings.Core;
-using BirthdayGreetings.FileSystem;
-using BirthdayGreetings.Smtp;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BirthdayGreetings.App
 {
-    // CompositionRoot + UseCase entry points
+    // Composed App + UseCase entry points
     public class GreetingsApp : IDisposable
     {
         readonly ServiceProvider serviceProvider;
 
-        public GreetingsApp(FileConfiguration fileConfiguration, SmtpConfiguration smtpConfiguration)
+        public GreetingsApp(ServiceProvider serviceProvider)
         {
-            var services = new ServiceCollection();
-            services
-                .AddTextFileEmployeeCatalog(fileConfiguration)
-                .AddSmtpGreetingsNotification(smtpConfiguration)
-                .AddCore();
-            serviceProvider = services.BuildServiceProvider();
+            this.serviceProvider = serviceProvider;
         }
 
         public Task RunOnToday() =>

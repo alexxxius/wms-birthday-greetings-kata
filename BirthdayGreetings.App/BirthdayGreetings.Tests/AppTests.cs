@@ -32,7 +32,10 @@ namespace BirthdayGreetings.Tests
         public AppTests()
         {
             smtpServer = SimpleSmtpServer.Start(smtpConfiguration.Port);
-            app = new GreetingsApp(fileConfiguration, smtpConfiguration);
+            app = new GreetingsAppBuilder()
+                .WithEmployeeCatalog(x => x.FileSystem(fileConfiguration))         
+                .WithGreetingsNotification(x => x.Smtp(smtpConfiguration))         
+                .Build();
         }
 
         public void Dispose()

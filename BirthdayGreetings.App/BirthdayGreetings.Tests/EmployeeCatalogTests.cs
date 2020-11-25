@@ -6,6 +6,7 @@ using Xunit;
 
 namespace BirthdayGreetings.Tests
 {
+    // Contract Tests Suite
     public abstract class EmployeeCatalogTests
     {
         protected abstract IEmployeeCatalog CreateCatalogWithEmployees((String, String, String) employee1, (String, String, String) employee2);
